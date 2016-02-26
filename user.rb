@@ -45,10 +45,10 @@ class User
 		end
 	end
 	@photos = []
-	def add_photo (photo)
+	def add_photo (photo) 
 		photo << @photos
 	end	
-		
+		#This photo one isn't entirely working yet. I'll try and fix it.
 	private 
 	def confirm_password_wrong 
 		puts "Sorry, that was the incorrect password, please try again"
