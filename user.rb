@@ -7,13 +7,12 @@ class User
 		@password = password
 		@birthdate = birthdate
 		puts "Please confirm your password."
-		confirmation = gets.chomp
-		if confirmation == @password 
-			puts "Your password has been set."
-		else 
-			puts "Sorry, your passwords do not match."
-			@password = false	
+		@confirmation = gets.chomp
+		until @confirmation == @password 
+			confirm_password_wrong
 		end
+		puts "Your password has been set."
+		puts "Welcome!"
 	end		
 		#The user class should have reader & writer methods for:
 			#Name
@@ -29,8 +28,37 @@ class User
 			
 	end	
 	def add_status
-		
+		puts "What is your current status?"
+		@status = gets.chomp
 	end
+	def see_info (profile)
+		if profile.downcase == "status"
+			puts @status 
+		elsif profile.downcase== "location"
+			puts @location
+		elsif profile.downcase == "name"
+			puts @name
+		elsif profile.downcase == "birthdate"
+			puts @birthdate
+		else 
+			puts "Sorry, you can\'t access that info."
+		end
+	end
+	@photos = []
+	def add_photo (photo)
+		photo << @photos
+	end	
+		
+	private 
+	def confirm_password_wrong 
+		puts "Sorry, that was the incorrect password, please try again"
+		@confirmation = gets.chomp
+		if @confirmation.downcase == "exit"
+			exit
+		end	
+	end					
+				
+end
 
 		#Call a method in the initialize that confirms the password
 			#First, create a method that prompts the user for input via the terminal
@@ -54,8 +82,17 @@ class User
 	
 	#Create at least 3 new user objects here:
 
+ben = User.new("bgolub@lsoc.org", "SUPER SECRET PASSWORD", "May 18, 1999")
+ben.add_name 
+ben.see_info ("name")
 
+alden = User.new("asulger@lsoc.org", "saucy", "September 11, 1998")
+alden.add_location
+alden.add_name
 
+reis = User.new("mherman@lsoc.org", "bowling", "May 7, 1999")
+reis.see_info ("birthdate")
+reis.add_status 
 
 #### CALL METHODS ON YOUR USER OBJECTS ####
 
